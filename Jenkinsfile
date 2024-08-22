@@ -1,16 +1,17 @@
 pipeline {
-    agent any
+    agent any 
     stages {
         stage('Checkout') {
             steps {
-                git clone https://github.com/jabedhasan21/java-hello-world-with-maven
-                cd java-hello-world-with-maven
+                cleanWs()
+                sh 'git clone https://github.com/jabedhasan21/java-hello-world-with-maven'
+                sh 'java -version'
             }
         }
         stage('Build') {
             steps {
-                mvn install
+                sh 'cd java-hello-world-with-maven; mvn install '
             }
         }
-    }
+    }    
 }
